@@ -1,0 +1,60 @@
+<!-- <form
+  autocomplete="off"
+  [formGroup]="loginForm"
+  (ngSubmit)="onSubmit(loginForm.value)"
+>
+  <div >
+    <label for="username">Username</label>
+    <input
+      type="text"
+      name="username"
+      id="username"
+      placeholder="Please enter your username"
+      formControlName="username"
+    />
+    <div
+      *ngIf="
+        f.username.dirty && f.username.touched && f.username.errors
+      "
+      [ngStyle]="{ display: 'inline-block' }"
+    >
+      <p *ngIf="f.username.errors.required" >
+        Username is required
+      </p>
+      <p *ngIf="f.username.errors.maxLength" >
+        Username must be less than 255 characters
+      </p>
+    </div>
+  </div>
+  <div >
+    <label for="password">Password</label>
+    <input
+      type="password"
+      name="password"
+      id="password"
+      placeholder="Please enter your password"
+      formControlName="password"
+    />
+    <div
+      *ngIf="
+        f.password.dirty && f.password.touched && f.password.errors
+      "
+      [ngStyle]="{ display: 'inline-block' }"
+    >
+      <p *ngIf="f.password.errors.required" >
+        Password is required
+      </p>
+    </div>
+  </div>
+  <div>
+    <button
+      type="submit"
+      [disabled]="loginForm.invalid"
+      [ngClass]="{
+        'btn__login--valid': loginForm.status === 'VALID'
+      }"
+    >
+      Sign in
+    </button>
+  </div>
+</form> -->
