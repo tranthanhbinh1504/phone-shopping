@@ -1,1 +1,51 @@
-<p>login works!</p>
+<div>
+  <form
+    autocomplete="off"
+    [formGroup]="loginForm"
+    (ngSubmit)="onSubmit(loginForm.value)"
+  >
+    <div>
+      <label for="username">Username</label>
+      <input
+        type="text"
+        name="username"
+        id="username"
+        placeholder="Please enter your username"
+        formControlName="username"
+      />
+    </div>  
+    <div
+      *ngIf="
+        f.username.dirty && f.username.touched && f.username.errors
+      "
+      class="invalid-feedback"
+      [ngStyle]="{ display: 'inline-block' }"
+    >
+      <p *ngIf="f.username.errors.required" class="invalid-text">
+        Username is required
+      </p>
+      <p *ngIf="f.username.errors.maxLength" class="invalid-text">
+        Username must be less than 255 characters
+      </p>
+    </div>
+    <div>
+      <label for="password">Password</label>
+      <input
+        type="password"
+        name="password"
+        id="password"
+        placeholder="Please enter your password"
+        formControlName="password"
+      />
+    </div>  
+    <div>
+      <button
+        type="submit"
+        class="btn__login"
+        [disabled]="loginForm.invalid"
+      >
+        Sign in
+      </button>
+    </div>
+  </form>
+</div>
