@@ -1,11 +1,11 @@
-<div>
+<!-- <div>
   <form
     autocomplete="off"
     [formGroup]="loginForm"
     (ngSubmit)="onSubmit(loginForm.value)"
+    class="form-signin"
   >
     <div>
-      <label for="username">Username</label>
       <input
         type="text"
         name="username"
@@ -29,7 +29,6 @@
       </p>
     </div>
     <div>
-      <label for="password">Password</label>
       <input
         type="password"
         name="password"
@@ -42,6 +41,58 @@
       <button
         type="submit"
         class="btn__login"
+        [disabled]="loginForm.invalid"
+      >
+        Sign in
+      </button>
+    </div>
+  </form>
+</div> -->
+<div class="login">
+  <form
+    class="form-signin"
+    autocomplete="off"
+    [formGroup]="loginForm"
+    (ngSubmit)="onSubmit(loginForm.value)"
+  >
+    <h1 class="h3 mb-3 font-weight-normal form-signin-title">Please sign in</h1>
+    <label for="inputEmail" class="sr-only">Email address</label>
+    <input
+      type="email"
+      class="form-control"
+      placeholder="Email address"
+      autofocus
+      id="inputEmail"
+      formControlName="email"
+    />
+    <p
+      *ngIf="f.email.dirty && f.email.touched && f.email.errors"
+      class="invalid-text"
+    >
+      Email is required
+    </p>
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input
+      type="password"
+      id="inputPassword"
+      class="form-control"
+      placeholder="Password"
+      formControlName="password"
+      required
+    />
+    <p
+      *ngIf="f.password.dirty && f.password.touched && f.password.errors"
+      class="invalid-text"
+    >
+      Email is required
+    </p>
+    <div class="checkbox mb-3">
+      <label> <input type="checkbox" value="remember-me" /> Remember me </label>
+    </div>
+    <div class="form-signin-button">
+      <button
+        class="btn btn-lg btn-primary btn-block"
+        type="submit"
         [disabled]="loginForm.invalid"
       >
         Sign in

@@ -19,7 +19,14 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@ba-infrastructure/*": ["src/app/infrastructure/*"],
+      "@ba-shared/*": ["src/app/shared/*"],
+      "@ba-core/*": ["src/app/core/*"],
+      "@ba-styles/*": ["src/app/styles/*"],
+      "assets/*": ["src/assets"]
+    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,

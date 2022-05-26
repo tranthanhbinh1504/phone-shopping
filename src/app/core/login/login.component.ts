@@ -1,19 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core'
+import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
   public loginForm: FormGroup | any
+  private submitted = false
 
-  constructor(
-    private fb: FormBuilder,
-    private router: Router,
-  ) { }
+  constructor(private fb: FormBuilder, private router: Router) {}
 
   ngOnInit(): void {
     this.initForm()
@@ -21,28 +19,22 @@ export class LoginComponent implements OnInit {
 
   private initForm() {
     this.loginForm = this.fb.group({
-        username: [
-            '',
-            Validators.compose([
-              Validators.required,
-              Validators.maxLength(255),
-            ]),
-        ],
-        password: [
-            '',
-            Validators.compose([Validators.required])
-        ],
-    });
+      email: [
+        '',
+        Validators.compose([Validators.required, Validators.maxLength(255)]),
+      ],
+      password: ['', Validators.compose([Validators.required])],
+    })
   }
 
   public onSubmit(formValue: any) {
-    if (this.loginForm.invalid) return;
-    const { username, password } = formValue;
-    console.log(username, password)
+    this.submitted = true
+    if (this.loginForm.invalid) return
+    const { email, password } = formValue
+    console.log(email, password)
   }
 
   get f() {
-    return this.loginForm.controls;
+    return this.loginForm.controls
   }
-
 }
