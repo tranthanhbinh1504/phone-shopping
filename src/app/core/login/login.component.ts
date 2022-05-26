@@ -1,7 +1,8 @@
 import { AuthenticationService } from '@ba-shared/services/authentication.service'
 import { Component, OnInit } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
-import { Router } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router'
+import { debounceTime, first } from 'rxjs/operators'
 
 @Component({
   selector: 'app-login',
@@ -10,13 +11,17 @@ import { Router } from '@angular/router'
 })
 export class LoginComponent implements OnInit {
   public loginForm: FormGroup | any
-  private submitted = false
+  public submitted = false
+  private returnUrl: string = ''
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private authenticationService: AuthenticationService
-  ) {}
+    private authenticationService: AuthenticationService,
+    private activatedRoute: ActivatedRoute
+  ) {
+    this.returnUrl = this.activatedRoute.snapshot.queryParams.returnUrl || 'web'
+  }
 
   ngOnInit(): void {
     this.initForm()
@@ -36,7 +41,21 @@ export class LoginComponent implements OnInit {
     this.submitted = true
     if (this.loginForm.invalid) return
     const { email, password } = formValue
-    console.log(email, password)
+    this.authenticationService
+      .login(email, password)
+      .pipe(debounceTime(2000), first())
+      .subscribe(
+        (res) => {
+          if (res) {
+            this.router.navigate([this.returnUrl])
+          }
+        },
+        (error) => {
+          this.loginForm.setErrors({
+            usernameOrPasswordIncorrect: error,
+          })
+        }
+      )
   }
 
   get f() {

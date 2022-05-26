@@ -43,6 +43,11 @@
     <div class="checkbox mb-3">
       <label> <input type="checkbox" value="remember-me" /> Remember me </label>
     </div>
+    <ng-container *ngIf="submitted && loginForm.hasError('usernameOrPasswordIncorrect')">
+      <span class="d-inline text-danger text-center">
+        {{ loginForm.getError('usernameOrPasswordIncorrect').error.message }}
+      </span>
+    </ng-container>
     <div class="form-signin-button">
       <button
         class="btn btn-lg btn-primary btn-block"

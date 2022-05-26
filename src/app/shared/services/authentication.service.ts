@@ -25,8 +25,8 @@ export class AuthenticationService extends BaseService<User> {
     return this.currentUserSubject.value
   }
 
-  public login(username: string, password: string): Observable<User | null> {
-    return this.post({ username, password }).pipe(
+  public login(email: string, password: string): Observable<User | null> {
+    return this.post({ email, password }).pipe(
       map((user: User) => {
         // login success if there's a token in response
         if (user && user.token) {

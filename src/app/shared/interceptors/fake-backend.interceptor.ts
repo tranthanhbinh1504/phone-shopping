@@ -56,9 +56,9 @@ export class FakeBEInterceptor implements HttpInterceptor {
     }
 
     function authenticate() {
-      const { username, password } = body
+      const { email, password } = body
       const user = users.find(
-        (user) => user.username === username && user.password === password
+        (user) => user.email === email && user.password === password
       )
       if (!user) return error('Username or Password is incorrect')
       return ok({
