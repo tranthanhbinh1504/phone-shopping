@@ -1,18 +1,30 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { LayoutComponent } from './layout/layout.component';
-import { LoginComponent } from './login/login.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router'
+import { CommonModule } from '@angular/common'
+import { SharedModule } from '@ba-shared/shared.module'
+import { NgModule, Optional, SkipSelf } from '@angular/core'
+import { LoginComponent } from './login/login.component'
+import { BrowserModule } from '@angular/platform-browser'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 
 @NgModule({
-  declarations: [
-    LayoutComponent,
-    LoginComponent
-  ],
+  declarations: [LoginComponent],
   imports: [
     CommonModule,
-    FormsModule,
+    RouterModule,
+    SharedModule,
+    // BrowserModule,
+    // FormsModule,
     ReactiveFormsModule,
-  ]
+  ],
 })
-export class CoreModule { }
+export class CoreModule {
+  constructor(
+    @Optional()
+    @SkipSelf()
+    parentModule: CoreModule
+  ) {
+    if (parentModule) {
+      throw new Error('Only import in AppModule')
+    }
+  }
+}

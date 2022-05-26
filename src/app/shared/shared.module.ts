@@ -17,6 +17,7 @@ import { MatPaginatorModule } from '@angular/material/paginator'
 import { HTTP_INTERCEPTORS } from '@angular/common/http'
 import { FakeBEInterceptor } from './interceptors/fake-backend.interceptor'
 import { JWTInterceptor } from './interceptors/jwt.interceptor'
+import { BrowserModule } from '@angular/platform-browser'
 
 const materialModules = [
   MatDialogModule,
@@ -35,7 +36,7 @@ const angularModules = [
   CommonModule,
   FormsModule,
   ReactiveFormsModule,
-  MatSelectModule,
+  BrowserModule,
 ]
 
 @NgModule({

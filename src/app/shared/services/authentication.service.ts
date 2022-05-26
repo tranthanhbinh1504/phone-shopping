@@ -12,8 +12,8 @@ import { map } from 'rxjs/operators'
 })
 export class AuthenticationService {
   private currentUser$: Observable<User>
-  public currentUserSubject: BehaviorSubject<User> = new BehaviorSubject<User>(
-    JSON.parse(localStorage.getItem('currentUser'))
+  public currentUserSubject: BehaviorSubject<any> = new BehaviorSubject<any>(
+    JSON.parse(localStorage.getItem('currentUser') || '{}')
   )
 
   constructor(

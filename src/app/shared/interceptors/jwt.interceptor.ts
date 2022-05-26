@@ -5,7 +5,7 @@ import {
   HttpRequest,
 } from '@angular/common/http'
 import { Inject, Injectable } from '@angular/core'
-import { AuthenticationService } from '@ba-shared/services'
+import { AuthenticationService } from '@ba-shared/services/authentication.service'
 import { Observable } from 'rxjs'
 
 @Injectable()
@@ -28,7 +28,7 @@ export class JWTInterceptor implements HttpInterceptor {
       req = req.clone({
         setHeaders: {
           Authorization: `Bearer ${token}`,
-          refreshtoken: refreshToken,
+          // refreshtoken: refreshToken,
         },
       })
     }

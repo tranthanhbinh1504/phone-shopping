@@ -92,18 +92,21 @@ export class FakeBEInterceptor implements HttpInterceptor {
     }
 
     function isLoggedIn() {
-      const authHeader = headers.get('Authorization') || ''
-      return authHeader.startsWith('Bearer fake-jwt-token')
+      // const authHeader = headers.get('Authorization') || ''
+      // return authHeader.startsWith('Bearer fake-jwt-token')
+      return null
     }
 
     function getCurrentUser() {
-      if (!isLoggedIn()) return
-      const id = headers.get('Authorization').split('.')[1]
-      return users.find((x) => x.id === id)
+      // if (!isLoggedIn()) return
+      // const id = headers.get('Authorization').split('.')[1]
+      // return users.find((x) => x.id === id)
+      return null
     }
 
     function isAdmin() {
-      return isLoggedIn() && getCurrentUser().role === ROLE.ADMIN
+      // return isLoggedIn() && getCurrentUser().role === ROLE.ADMIN
+      return null
     }
   }
 }

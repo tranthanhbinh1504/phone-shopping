@@ -1,53 +1,3 @@
-<!-- <div>
-  <form
-    autocomplete="off"
-    [formGroup]="loginForm"
-    (ngSubmit)="onSubmit(loginForm.value)"
-    class="form-signin"
-  >
-    <div>
-      <input
-        type="text"
-        name="username"
-        id="username"
-        placeholder="Please enter your username"
-        formControlName="username"
-      />
-    </div>  
-    <div
-      *ngIf="
-        f.username.dirty && f.username.touched && f.username.errors
-      "
-      class="invalid-feedback"
-      [ngStyle]="{ display: 'inline-block' }"
-    >
-      <p *ngIf="f.username.errors.required" class="invalid-text">
-        Username is required
-      </p>
-      <p *ngIf="f.username.errors.maxLength" class="invalid-text">
-        Username must be less than 255 characters
-      </p>
-    </div>
-    <div>
-      <input
-        type="password"
-        name="password"
-        id="password"
-        placeholder="Please enter your password"
-        formControlName="password"
-      />
-    </div>  
-    <div>
-      <button
-        type="submit"
-        class="btn__login"
-        [disabled]="loginForm.invalid"
-      >
-        Sign in
-      </button>
-    </div>
-  </form>
-</div> -->
 <div class="login">
   <form
     class="form-signin"
@@ -56,30 +6,34 @@
     (ngSubmit)="onSubmit(loginForm.value)"
   >
     <h1 class="h3 mb-3 font-weight-normal form-signin-title">Please sign in</h1>
-    <label for="inputEmail" class="sr-only">Email address</label>
-    <input
-      type="email"
-      class="form-control"
-      placeholder="Email address"
-      autofocus
-      id="inputEmail"
-      formControlName="email"
-    />
-    <p
-      *ngIf="f.email.dirty && f.email.touched && f.email.errors"
-      class="invalid-text"
-    >
-      Email is required
-    </p>
-    <label for="inputPassword" class="sr-only">Password</label>
-    <input
-      type="password"
-      id="inputPassword"
-      class="form-control"
-      placeholder="Password"
-      formControlName="password"
-      required
-    />
+    <div class="form-signin-group">
+      <label for="inputEmail" class="sr-only">Email address</label>
+      <input
+        type="email"
+        class="form-control"
+        placeholder="Email address"
+        autofocus
+        id="inputEmail"
+        formControlName="email"
+      />
+    </div>
+    <div class="form-signin-group">
+      <p
+        *ngIf="f.email.dirty && f.email.touched && f.email.errors"
+        class="invalid-text"
+      >
+        Email is required
+      </p>
+      <label for="inputPassword" class="sr-only">Password</label>
+      <input
+        type="password"
+        id="inputPassword"
+        class="form-control"
+        placeholder="Password"
+        formControlName="password"
+        required
+      />
+    </div>
     <p
       *ngIf="f.password.dirty && f.password.touched && f.password.errors"
       class="invalid-text"
