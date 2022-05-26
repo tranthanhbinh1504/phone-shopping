@@ -14,6 +14,9 @@ import { MatTableModule } from '@angular/material/table'
 import { MatSelectModule } from '@angular/material/select'
 import { MatProgressBarModule } from '@angular/material/progress-bar'
 import { MatPaginatorModule } from '@angular/material/paginator'
+import { HTTP_INTERCEPTORS } from '@angular/common/http'
+import { FakeBEInterceptor } from './interceptors/fake-backend.interceptor'
+import { JWTInterceptor } from './interceptors/jwt.interceptor'
 
 const materialModules = [
   MatDialogModule,
@@ -28,8 +31,27 @@ const materialModules = [
   MatProgressBarModule,
 ]
 
+const angularModules = [
+  CommonModule,
+  FormsModule,
+  ReactiveFormsModule,
+  MatSelectModule,
+]
+
 @NgModule({
   declarations: [],
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, ...materialModules],
+  imports: [...angularModules, ...materialModules],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: FakeBEInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JWTInterceptor,
+      multi: true,
+    },
+  ],
 })
 export class SharedModule {}

@@ -40,14 +40,4 @@ export class AuthGuard implements CanActivate {
     this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } })
     return false
   }
-
-  // no need to check role
-  // canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-  //     // check if route is restricted by role
-  //     if(this.getCurrentUser() && childRoute.data.roles && childRoute.data.roles.indexOf(this.getCurrentUser().role) === -1) {
-  //         this.router.navigate(['/web/admin'])
-  //         return false;
-  //     }
-  //     return true;
-  // }
 }
