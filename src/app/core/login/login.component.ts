@@ -1,3 +1,4 @@
+import { AuthenticationService } from '@ba-shared/services/authentication.service'
 import { Component, OnInit } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router'
@@ -11,7 +12,11 @@ export class LoginComponent implements OnInit {
   public loginForm: FormGroup | any
   private submitted = false
 
-  constructor(private fb: FormBuilder, private router: Router) {}
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private authenticationService: AuthenticationService
+  ) {}
 
   ngOnInit(): void {
     this.initForm()

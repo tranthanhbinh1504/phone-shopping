@@ -14,10 +14,12 @@ import { MatTableModule } from '@angular/material/table'
 import { MatSelectModule } from '@angular/material/select'
 import { MatProgressBarModule } from '@angular/material/progress-bar'
 import { MatPaginatorModule } from '@angular/material/paginator'
-import { HTTP_INTERCEPTORS } from '@angular/common/http'
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { FakeBEInterceptor } from './interceptors/fake-backend.interceptor'
 import { JWTInterceptor } from './interceptors/jwt.interceptor'
 import { BrowserModule } from '@angular/platform-browser'
+import { environment } from 'src/environments/environment'
+import { ErrorInterceptor } from './interceptors/error.interceptor'
 
 const materialModules = [
   MatDialogModule,
@@ -43,16 +45,10 @@ const angularModules = [
   declarations: [],
   imports: [...angularModules, ...materialModules],
   providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: FakeBEInterceptor,
-      multi: true,
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: JWTInterceptor,
-      multi: true,
-    },
+    { provide: 'BASE_URL', useValue: '' },
+    { provide: HTTP_INTERCEPTORS, useClass: FakeBEInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: JWTInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
 })
 export class SharedModule {}
