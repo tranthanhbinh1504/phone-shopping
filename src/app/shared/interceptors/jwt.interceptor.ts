@@ -20,15 +20,12 @@ export class JWTInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     const currentUser = this.authenticationService.getCurrentUser()
-    const token = this.authenticationService.getToken()
-    const refreshToken = this.authenticationService.getRefreshToken()
-    const isLoggedIn = currentUser && token
+    const isLoggedIn = currentUser && currentUser.token
     const isAPIURL = req.url.startsWith(this.baseURL)
     if (isLoggedIn && isAPIURL) {
       req = req.clone({
         setHeaders: {
-          Authorization: `Bearer ${token}`,
-          // refreshtoken: refreshToken,
+          Authorization: `Bearer ${currentUser.token}`,
         },
       })
     }
