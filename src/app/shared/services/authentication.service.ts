@@ -9,8 +9,8 @@ import { User } from '@ba-shared/models/user.model'
 })
 export class AuthenticationService extends BaseService<User> {
   private currentUser$: Observable<User>
-  public currentUserSubject: BehaviorSubject<User> = new BehaviorSubject<User>(
-    null || {}
+  public currentUserSubject: BehaviorSubject<User> = new BehaviorSubject<any>(
+    JSON.parse(localStorage.getItem('currentUser')!)
   )
 
   constructor(
