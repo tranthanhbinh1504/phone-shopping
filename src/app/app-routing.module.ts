@@ -1,3 +1,4 @@
+import { PageNotFoundComponent } from '@ba-core/page-not-found/page-not-found.component'
 import { AuthGuard } from './shared/guards/auth.guard'
 import { LoginComponent } from './core/login/login.component'
 import { NgModule } from '@angular/core'
@@ -18,6 +19,14 @@ const routes: Routes = [
     path: 'web',
     component: LayoutComponent,
     canActivate: [AuthGuard],
+  },
+  {
+    path: 'not-found',
+    component: PageNotFoundComponent,
+  },
+  {
+    path: '**',
+    redirectTo: 'not-found',
   },
 ]
 
