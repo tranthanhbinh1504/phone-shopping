@@ -3,7 +3,7 @@ import { AuthGuard } from './shared/guards/auth.guard'
 import { LoginComponent } from './core/login/login.component'
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
-import { LayoutComponent } from './feature/layout/layout.component'
+import { LayoutComponent } from './core/layout/layout.component'
 
 const routes: Routes = [
   {
