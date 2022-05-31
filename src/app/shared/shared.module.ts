@@ -19,7 +19,6 @@ import { FakeBEInterceptor } from './interceptors/fake-backend.interceptor'
 import { JWTInterceptor } from './interceptors/jwt.interceptor'
 import { BrowserModule } from '@angular/platform-browser'
 import { environment } from 'src/environments/environment'
-import { ErrorInterceptor } from './interceptors/error.interceptor'
 
 const materialModules = [
   MatDialogModule,
@@ -48,7 +47,6 @@ const angularModules = [
     { provide: 'BASE_URL', useValue: '' },
     { provide: HTTP_INTERCEPTORS, useClass: FakeBEInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: JWTInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
 })
 export class SharedModule {}

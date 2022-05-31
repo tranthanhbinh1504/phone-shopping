@@ -8,9 +8,11 @@ import { User } from '@ba-shared/models/user.model'
   providedIn: 'root',
 })
 export class AuthenticationService extends BaseService<User> {
+  private defaultURL = 'http://localhost:3000'
+
   private currentUser$: Observable<User>
   public currentUserSubject: BehaviorSubject<User> = new BehaviorSubject<any>(
-    JSON.parse(localStorage.getItem('currentUser')!)
+    JSON.parse(localStorage.getItem('jwt')!)
   )
 
   constructor(
@@ -25,15 +27,31 @@ export class AuthenticationService extends BaseService<User> {
     return this.currentUserSubject.value
   }
 
-  public login(email: string, password: string): Observable<User | null> {
-    return this.post({ email, password }).pipe(
-      map((user: User) => {
-        // login success if there's a token in response
-        if (user && user.token) {
-          // store user details to local storage to keep logged user in between page refresh
-          localStorage.setItem('currentUser', JSON.stringify(user))
-          this.currentUserSubject.next(user)
-          return user
+  public login(username: string, password: string): Observable<User | null> {
+    // case 1 :
+
+    // return this.post({ email, password }).pipe(
+    //   map((user: User) => {
+    //     // login success if there's a token in response
+    //     if (user && user.token) {
+    //       // store user details to local storage to keep logged user in between page refresh
+    //       localStorage.setItem('currentUser', JSON.stringify(user))
+    //       this.currentUserSubject.next(user)
+    //       return user
+    //     }
+    //     return null
+    //   })
+    // )
+
+    // case 2 :
+    const url = this.defaultURL + '/auth/login'
+    return this.httpClient.post(url, { username, password }).pipe(
+      map((res: any) => {
+        if (res) {
+          const { jwt } = res
+          localStorage.setItem('jwt', JSON.stringify(jwt))
+          this.currentUserSubject.next(jwt)
+          return jwt
         }
         return null
       })
@@ -41,7 +59,7 @@ export class AuthenticationService extends BaseService<User> {
   }
 
   public logout(): void {
-    localStorage.removeItem('currentUser')
+    localStorage.removeItem('jwt')
     this.currentUserSubject.next(null || {})
   }
 }
