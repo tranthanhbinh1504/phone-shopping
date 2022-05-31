@@ -18,6 +18,8 @@ const routes: Routes = [
   {
     path: 'web',
     component: LayoutComponent,
+    loadChildren: () =>
+      import('./feature/feature.module').then((m) => m.FeatureModule),
     canActivate: [AuthGuard],
   },
   {

@@ -1,3 +1,4 @@
+import { FeatureRoutingModule } from './feature-routing.module'
 import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { LayoutComponent } from '../core/layout/layout.component'
@@ -7,12 +8,12 @@ import { EnterpriseComponent } from './enterprise/enterprise.component'
 import { SupportComponent } from './support/support.component'
 
 @NgModule({
+  imports: [CommonModule, SharedModule, FeatureRoutingModule, SharedModule],
   declarations: [
     LayoutComponent,
     ShopComponent,
     EnterpriseComponent,
     SupportComponent,
   ],
-  imports: [CommonModule, SharedModule],
 })
 export class FeatureModule {}

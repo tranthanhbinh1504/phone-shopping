@@ -33,12 +33,7 @@ const materialModules = [
   MatProgressBarModule,
 ]
 
-const angularModules = [
-  CommonModule,
-  FormsModule,
-  ReactiveFormsModule,
-  BrowserModule,
-]
+const angularModules = [CommonModule, FormsModule, ReactiveFormsModule]
 
 @NgModule({
   declarations: [],
