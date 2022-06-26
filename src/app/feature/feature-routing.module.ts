@@ -6,6 +6,11 @@ import { NgModule } from '@angular/core'
 
 const routes: Routes = [
   {
+    path: '',
+    redirectTo: 'shop',
+    pathMatch: 'full',
+  },
+  {
     path: 'shop',
     component: ShopComponent,
   },

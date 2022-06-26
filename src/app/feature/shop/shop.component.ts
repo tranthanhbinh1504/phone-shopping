@@ -1,3 +1,4 @@
+import { CartService } from './../../services/cart.service'
 import { Observable } from 'rxjs'
 import { Component, OnInit } from '@angular/core'
 import { ShopService } from './shop.service'
@@ -11,7 +12,10 @@ import { map } from 'rxjs/operators'
 export class ShopComponent implements OnInit {
   listItem: any
 
-  constructor(private shopService: ShopService) {}
+  constructor(
+    private shopService: ShopService,
+    private cartService: CartService
+  ) {}
 
   ngOnInit(): void {
     this.getListItem()
@@ -23,5 +27,9 @@ export class ShopComponent implements OnInit {
         this.listItem = res
       }
     })
+  }
+
+  public addCart(item: any) {
+    this.cartService.addtoCart(item)
   }
 }

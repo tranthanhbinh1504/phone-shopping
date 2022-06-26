@@ -1,18 +1,25 @@
 <div class="row">
-
-  <div *ngFor="let item of listItem" class="col-md-4">
-    <div class="card mb-4 box-shadow">
-      <img class="card-img-top" src={{item.image}} alt="Card image cap">
-      <div class="card-body">
-        <div class="card-text title">{{item.name}}</div>
-        <div class="card-text price">
-          {{item.price}}
-        </div>
-        <div class="btn-group">
-          <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-          <button type="button" class="btn btn-sm btn-outline-secondary">Buy</button>
+  <div class="row col-9">
+    <div *ngFor="let item of listItem" class="col-md-4">
+      <div class="card mb-4 box-shadow">
+        <img class="card-img-top" src={{item.image}} alt="Card image cap">
+        <div class="card-body">
+          <div class="card-text title">{{item.name}}</div>
+          <div class="card-text price">
+            {{item.price}} $
+          </div>
+          <div class="btn-group">
+            <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+            <button type="button" class="btn btn-sm btn-outline-secondary" (click)="addCart(item)">Add to cart</button>
+          </div>
         </div>
       </div>
     </div>
   </div>
+  <div class="col-3">
+    <app-cart></app-cart>
+  </div>
+
+
+
 </div>
