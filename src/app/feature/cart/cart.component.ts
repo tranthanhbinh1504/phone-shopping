@@ -15,7 +15,7 @@ export class CartComponent implements OnInit {
 
   ngOnInit() {
     this.listCart()
-    getCartTotal()
+    this.totalPrice()
   }
 
   listCart() {
@@ -25,7 +25,12 @@ export class CartComponent implements OnInit {
   totalPrice() {
     this.cartTotal = this.cartService.getCartTotal()
   }
-}
-function getCartTotal() {
-  throw new Error('Function not implemented.')
+
+  addItem(product: any) {
+    this.cartService.addItem(product)
+  }
+
+  removeItem(product: any) {
+    this.cartService.removeItem(product)
+  }
 }

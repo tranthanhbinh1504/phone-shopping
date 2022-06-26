@@ -46,7 +46,7 @@ export class CartService {
       })
     }
 
-    const totalPrice = this.listCart.forEach((o, i) => {
+    this.listCart.forEach((o, i) => {
       this.totalPrice = this.totalPrice + parseInt(o.price) * o.quantity
     })
   }
@@ -56,11 +56,28 @@ export class CartService {
   }
 
   getCartTotal() {
-    if (this.listCart.length > 0) {
-      this.listCart.forEach((o, i) => {
-        this.totalPrice = this.totalPrice + parseInt(o.price) * o.quantity
-      })
-    }
     return this.totalPrice
+  }
+
+  addItem(item: any) {
+    this.listCart.find((o, i) => {
+      if (o.product === item.product) {
+        this.listCart[i] = {
+          ...o,
+          quantity: o.quantity + 1,
+        }
+      }
+    })
+  }
+
+  removeItem(item: any) {
+    this.listCart.find((o, i) => {
+      if (o.product === item.product) {
+        this.listCart[i] = {
+          ...o,
+          quantity: o.quantity - 1,
+        }
+      }
+    })
   }
 }
